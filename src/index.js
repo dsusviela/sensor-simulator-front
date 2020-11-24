@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <div className="title">
+      <h1>IoT sensores</h1>
+    </div>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

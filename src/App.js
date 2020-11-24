@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import SensorMap from './components/SensorMap/SensorMap';
+import SidePanel from './components/SidePanel/SidePanel';
 
-function App() {
+const App = () => {
+  const [ selectedSensor, setSelectedSensor ] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app__map">
+        <SensorMap
+          selectSensor={(id) => {
+            console.log(id);
+            setSelectedSensor(id);
+          }}
+        />
+      </div>
+      <div className="app__sideboard">
+        <SidePanel selectedSensor={selectedSensor} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

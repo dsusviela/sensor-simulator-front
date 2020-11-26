@@ -1,44 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GeneralSidePanel from './GeneralSidePanel';
+import SensorPanel from '../SensorPanel/SensorPanel';
 import './SidePanel.css';
-import TabHeader from './TabHeader';
+import {Button, Nav, NavItem, Container, CustomInput, TabContent, TabPane, NavLink} from "reactstrap";
 
-const SidePanel = ({ selectedSensor }) => {
-  const [ selectedTab, setSelectedTab ] = useState('general');
+const SidePanel = ({ selectedSensor, selectedTab, setSelectedTab }) => {
 
   const renderSidePanelContent = () => {
-    if (selectedTab === 'general') {
-      return <GeneralSidePanel />;
-    } else {
-      return <div> {selectedSensor} </div>;
-    }
+    return(<TabContent activeTab={selectedTab}>
+        <TabPane tabId="general">
+          <GeneralSidePanel />
+        </TabPane>
+        <TabPane tabId="sensor">
+          <SensorPanel sensor={selectedSensor} />
+        </TabPane>
+    </TabContent>)
   };
 
   return (
-    <div className="sidepanel">
-      <div className="sidepanel__tabs">
-        <TabHeader
-          headerTitle="General"
-          active={selectedTab === 'general'}
-          onClick={() => {
-            setSelectedTab('general');
-          }}
-        />
-        <TabHeader
-          headerTitle="Sensor Playa"
-          active={selectedTab === 'beach-sensor'}
-          onClick={() => {
-            setSelectedTab('beach-sensor');
-          }}
-        />
-        <TabHeader
-          headerTitle="Sensor Omnibus"
-          active={selectedTab === 'bus-sensor'}
-          onClick={() => {
-            setSelectedTab('bus-sensor');
-          }}
-        />
-      </div>
+    <div className="side-panel">
+      <Nav fill className="tab-header">
+        <NavItem>
+          <NavLink className={selectedTab === 'general' ? 'active' : ''} onClick={() => setSelectedTab('general')}>
+            General
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className={selectedTab === 'sensor' ? 'active' : ''} onClick={() => setSelectedTab('sensor')}>
+            Sensor
+          </NavLink>
+        </NavItem>
+      </Nav>
       {renderSidePanelContent()}
     </div>
   );

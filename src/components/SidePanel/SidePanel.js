@@ -1,45 +1,46 @@
-import React, { useState } from 'react';
-import GeneralSidePanel from './GeneralSidePanel';
+import React from 'react';
+import GeneralSidePanel from './Panels/GeneralSidePanel';
+import SensorPanel from './Panels/SensorPanel';
 import './SidePanel.css';
-import TabHeader from './TabHeader';
+import { Nav, NavItem, TabContent, TabPane, NavLink } from 'reactstrap';
 
-const SidePanel = ({ selectedSensor }) => {
-  const [ selectedTab, setSelectedTab ] = useState('general');
-
-  const renderSidePanelContent = () => {
-    if (selectedTab === 'general') {
-      return <GeneralSidePanel />;
-    } else {
-      return <div> {selectedSensor} </div>;
-    }
-  };
-
+const SidePanel = ({
+  selectedSensor,
+  selectedTab,
+  setSelectedTab,
+  className,
+  newBeachSensorData,
+  setNewBeachSensorData,
+  setLocationMarker,
+  createBeachSensor
+}) => {
   return (
-    <div className="sidepanel">
-      <div className="sidepanel__tabs">
-        <TabHeader
-          headerTitle="General"
-          active={selectedTab === 'general'}
-          onClick={() => {
-            setSelectedTab('general');
-          }}
-        />
-        <TabHeader
-          headerTitle="Sensor Playa"
-          active={selectedTab === 'beach-sensor'}
-          onClick={() => {
-            setSelectedTab('beach-sensor');
-          }}
-        />
-        <TabHeader
-          headerTitle="Sensor Omnibus"
-          active={selectedTab === 'bus-sensor'}
-          onClick={() => {
-            setSelectedTab('bus-sensor');
-          }}
-        />
-      </div>
-      {renderSidePanelContent()}
+    <div className={className}>
+      <Nav fill className="tab-header">
+        <NavItem>
+          <NavLink className={selectedTab === 'general' ? 'active' : ''} onClick={() => setSelectedTab('general')}>
+            General
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className={selectedTab === 'sensor' ? 'active' : ''} onClick={() => setSelectedTab('sensor')}>
+            Sensor
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={selectedTab}>
+        <TabPane tabId="general">
+          <GeneralSidePanel
+            newBeachSensorData={newBeachSensorData}
+            setLocationMarker={setLocationMarker}
+            setNewBeachSensorData={setNewBeachSensorData}
+            createBeachSensor={createBeachSensor}
+          />
+        </TabPane>
+        <TabPane tabId="sensor">
+          <SensorPanel sensor={selectedSensor} />
+        </TabPane>
+      </TabContent>
     </div>
   );
 };

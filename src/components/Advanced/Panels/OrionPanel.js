@@ -1,0 +1,80 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { anOldHope, arta, atomOneDark, CodeBlock, dracula, hybrid, monokai, tomorrow } from 'react-code-blocks';
+import './OrionPanel.css';
+
+const OrionPanel = () => {
+  const { REACT_APP_ORION_S } = process.env;
+
+  const [ activeTab, setActiveTab ] = useState('1');
+  const [ jsonDisplay, setJsonDisplay ] = useState('Error conectandose a Orion');
+
+  const populateSubscriptions = () => {
+    setJsonDisplay('Fetching from Orion...');
+    axios
+      .get(`${REACT_APP_ORION_S}/v2/subscriptions`, {
+        headers: { 'fiware-service': 'openiot', 'fiware-servicepath': '/' }
+      })
+      .then((res) => {
+        console.log(res);
+        setJsonDisplay(JSON.stringify(res.data, null, 4));
+      })
+      .catch(setJsonDisplay('Error conectandose a Orion'));
+  };
+
+  const populateDevices = () => {
+    setJsonDisplay('Fetching from Orion...');
+    axios
+      .get(`${REACT_APP_ORION_S}/v2/entities`, { headers: { 'fiware-service': 'openiot', 'fiware-servicepath': '/' } })
+      .then((res) => {
+        setJsonDisplay(JSON.stringify(res.data, null, 4));
+      })
+      .catch(setJsonDisplay('Error conectandose a Orion'));
+  };
+
+  const toggle = (tab) => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
+
+  useEffect(() => {
+    populateSubscriptions();
+  }, []);
+
+  return (
+    <div className="orion-panel">
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            onClick={() => {
+              populateSubscriptions();
+              toggle('1');
+            }}
+          >
+            Subscripciones en Orion
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            onClick={() => {
+              populateDevices();
+              toggle('2');
+            }}
+          >
+            Dispositivos en Orion
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent className="tab-content" activeTab={activeTab}>
+        <TabPane tabId="1">
+          <CodeBlock text={jsonDisplay} language="json" showLineNumbers={true} theme={anOldHope} />
+        </TabPane>
+        <TabPane tabId="2">
+          <CodeBlock text={jsonDisplay} language="json" showLineNumbers={true} theme={anOldHope} />
+        </TabPane>
+      </TabContent>
+    </div>
+  );
+};
+
+export default OrionPanel;

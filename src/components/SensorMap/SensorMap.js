@@ -1,20 +1,43 @@
 import React, { useRef } from 'react';
-import { Map, Marker, TileLayer, Popup } from 'react-leaflet';
+import { CircleMarker, Map, TileLayer, LayersControl } from 'react-leaflet';
 import './SensorMap.css';
+import 'leaflet/dist/leaflet.css';
 
-const SensorMap = ({ selectSensor }) => {
+const SensorMap = ({
+  selectSensor,
+  className,
+  beachSensors,
+  newBeachSensorData,
+  setNewBeachSensorData,
+  setLocationMarker,
+  locationMarker
+}) => {
   const mapRef = useRef();
 
+  const parseLatLng = (latlng) => {
+    return `${latlng.lat}, ${latlng.lng}`;
+  };
+
+  const updateLocation = (event) => {
+    if (newBeachSensorData.listeningForLocation) {
+      setLocationMarker([ <CircleMarker map={mapRef} key={'imakey'} center={event.latlng} /> ]);
+      setNewBeachSensorData({ ...newBeachSensorData, ...{ location: parseLatLng(event.latlng) } });
+    }
+  };
+
   return (
-    <Map center={[ -34.91796, -56.166744 ]} zoom={15} scrollWheelZoom={false} ref={mapRef}>
-      <TileLayer
-        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[ -34.91796, -56.166744 ]} onClick={() => selectSensor(0)}>
-        <Popup>asda</Popup>
-      </Marker>
-    </Map>
+    <div className={className}>
+      <Map center={[ -34.91796, -56.166744 ]} zoom={15} scrollWheelZoom={false} ref={mapRef} onClick={updateLocation}>
+        <LayersControl position="topright">
+          <TileLayer
+            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {beachSensors}
+          {locationMarker}
+        </LayersControl>
+      </Map>
+    </div>
   );
 };
 

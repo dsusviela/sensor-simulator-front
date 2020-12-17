@@ -1,0 +1,57 @@
+.sub-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sub-menu--input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+}
+
+.separator {
+  margin: 5px;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.sub-menu--input-row--input {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 240px;
+}
+
+.sub-menu--input-row--input__checkbox {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 120px;
+}
+
+.sub-menu--input__width-150 {
+  width: 150px;
+}
+
+.sub-menu--input__width-75 {
+  width: 75px;
+}
+
+.sub-menu--input__width-130 {
+  width: 130px;
+}
+
+.form-check-input {
+  position: relative;
+  margin-top: .3rem;
+  margin-left: -1.25rem;
+}
+
+.sub-menu--button {
+  width: 240px;
+}

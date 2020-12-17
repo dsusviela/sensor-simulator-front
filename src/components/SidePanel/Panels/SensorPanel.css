@@ -1,0 +1,8 @@
+.sensor-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.sensor-panel--row {
+
+}

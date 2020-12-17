@@ -1,0 +1,15 @@
+.general-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.general-main-tab--button {
+  margin: 5px;
+}
+
+hr {
+  width: 100%;
+  background-color: gray;
+}

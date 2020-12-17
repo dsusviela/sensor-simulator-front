@@ -1,0 +1,31 @@
+.sub-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sub-menu--main-button-row {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100px;
+}
+
+.rounded {
+  width: 100%;
+  background-color: lightgray;
+}
+
+.sub-menu--button__main {
+  width: 200px;
+}
+
+.sub-menu--button-row {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.sub-menu--label {
+  width: 100px;
+}

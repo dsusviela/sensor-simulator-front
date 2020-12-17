@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# ENV VARS
+
+The following env vars are needed:
+
+REACT_APP_SENSOR_BACKEND_API=http://localhost:7000
+REACT_APP_FEATURE_PROVIDER=http://localhost:5000
+REACT_APP_ORION_S=http://localhost:1026

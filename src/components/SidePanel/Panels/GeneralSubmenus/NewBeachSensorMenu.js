@@ -61,7 +61,7 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
           <option value="agua">Sensor de Agua</option>
           <option value="personas">Sensor de Personas</option>
           <option value="uv">Sensor UV</option>
-          <option value="banderas">Sensor de Bandera</option>
+          <option value="bandera">Sensor de Bandera</option>
         </Input>
         <div className="separator" />
         <Input

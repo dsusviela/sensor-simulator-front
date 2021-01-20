@@ -12,7 +12,10 @@ const SidePanel = ({
   newBeachSensorData,
   setNewBeachSensorData,
   setLocationMarker,
-  createBeachSensor
+  createBeachSensor,
+  newBusSensorData,
+  setNewBusSensorData,
+  createBusSensor
 }) => {
   return (
     <div className={className}>
@@ -35,6 +38,9 @@ const SidePanel = ({
             setLocationMarker={setLocationMarker}
             setNewBeachSensorData={setNewBeachSensorData}
             createBeachSensor={createBeachSensor}
+            newBusSensorData={newBusSensorData}
+            setNewBusSensorData={setNewBusSensorData}
+            createBusSensor={createBusSensor}
           />
         </TabPane>
         <TabPane tabId="sensor">

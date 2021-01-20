@@ -4,8 +4,17 @@ import { Button } from 'reactstrap';
 import './GeneralSidePanel.css';
 import NewBeachSensorMenu from './GeneralSubmenus/NewBeachSensorMenu';
 import SimulationMenu from './GeneralSubmenus/SimulationMenu';
+import NewBusSensorMenu from './GeneralSubmenus/NewBusSensorMenu';
 
-const GeneralSidePanel = ({ newBeachSensorData, setNewBeachSensorData, setLocationMarker, createBeachSensor }) => {
+const GeneralSidePanel = ({
+  newBeachSensorData,
+  setNewBeachSensorData,
+  setLocationMarker,
+  createBeachSensor,
+  newBusSensorData,
+  setNewBusSensorData,
+  createBusSensor
+}) => {
   const [ submenu, setSubmenu ] = useState('none');
   const { REACT_APP_SENSOR_BACKEND_API } = process.env;
 
@@ -20,6 +29,14 @@ const GeneralSidePanel = ({ newBeachSensorData, setNewBeachSensorData, setLocati
       );
     } else if (submenu === 'simulation') {
       return <SimulationMenu />;
+    } else if (submenu === 'new-bus-sensor') {
+      return (
+        <NewBusSensorMenu
+          newBusSensorData={newBusSensorData}
+          setNewBusSensorData={setNewBusSensorData}
+          createBusSensor={createBusSensor}
+        />
+      );
     } else {
       return <div />;
     }
@@ -58,7 +75,7 @@ const GeneralSidePanel = ({ newBeachSensorData, setNewBeachSensorData, setLocati
         onClick={() => {
           setLocationMarker([]);
           setNewBeachSensorData({ ...newBeachSensorData, ...{ listeningForLocation: false } });
-          setSubmenu('none');
+          setSubmenu('new-bus-sensor');
         }}
       >
         Crear sensor omnibus

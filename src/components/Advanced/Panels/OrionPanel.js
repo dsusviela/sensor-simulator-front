@@ -26,7 +26,9 @@ const OrionPanel = () => {
   const populateDevices = () => {
     setJsonDisplay('Fetching from Orion...');
     axios
-      .get(`${REACT_APP_ORION_S}/v2/entities`, { headers: { 'fiware-service': 'openiot', 'fiware-servicepath': '/' } })
+      .get(`${REACT_APP_ORION_S}/v2/entities?limit=100`, {
+        headers: { 'fiware-service': 'openiot', 'fiware-servicepath': '/' }
+      })
       .then((res) => {
         setJsonDisplay(JSON.stringify(res.data, null, 4));
       })

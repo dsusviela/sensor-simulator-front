@@ -5,7 +5,7 @@ const Sensor = ({ data, selectSensor }) => {
   return (
     <CircleMarker
       onClick={() => selectSensor(data.id)}
-      center={data.location.coordinates}
+      center={[ data.location.coordinates[1], data.location.coordinates[0] ]}
       fillColor={'green'}
       color={'black'}
       radius={7}

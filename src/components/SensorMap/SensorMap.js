@@ -9,6 +9,7 @@ const SensorMap = ({
   beachSensors,
   newBeachSensorData,
   setNewBeachSensorData,
+  busSensors,
   setLocationMarker,
   locationMarker
 }) => {
@@ -34,6 +35,7 @@ const SensorMap = ({
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {beachSensors}
+          {busSensors}
           {locationMarker}
         </LayersControl>
       </Map>

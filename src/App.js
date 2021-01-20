@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import useInterval from '@use-it/interval';
 import './App.css';
 import Sensor from './components/SensorMap/Sensor';
 import SensorMap from './components/SensorMap/SensorMap';
@@ -22,6 +23,14 @@ const App = () => {
     period: 5,
     listeningForLocation: false
   });
+  const [ busSensors, setBusSensors ] = useState([]);
+  const [ newBusSensorData, setNewBusSensorData ] = useState({
+    alive: false,
+    location_index: 0,
+    line: 405,
+    subline: 3,
+    direction: 'B'
+  });
   const [ locationMarker, setLocationMarker ] = useState([]);
   const [ beachFeatureData, setBeachFeatureData ] = useState([]);
 
@@ -34,13 +43,34 @@ const App = () => {
         populateBeachSensors(res.data);
       })
       .catch((error) => console.log(error));
+    axios
+      .get(`${REACT_APP_SENSOR_BACKEND_API}/bus_sensors`)
+      .then((res) => {
+        populateBusSensors(res.data);
+      })
+      .catch((error) => console.log(error));
     // axios.get(`${REACT_APP_FEATURE_PROVIDER}/playas/items`).then()
   }, []);
 
+  useInterval(() => {
+    axios
+      .get(`${REACT_APP_SENSOR_BACKEND_API}/bus_sensors`)
+      .then((res) => {
+        populateBusSensors(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, 5000);
+
   const createBeachSensor = (payload) => {
-    console.log(payload);
     axios
       .post(`${REACT_APP_SENSOR_BACKEND_API}/beach_sensors`, payload)
+      .then((res) => refreshPage())
+      .catch((err) => console.log(err));
+  };
+
+  const createBusSensor = (payload) => {
+    axios
+      .post(`${REACT_APP_SENSOR_BACKEND_API}/bus_sensors`, payload)
       .then((res) => refreshPage())
       .catch((err) => console.log(err));
   };
@@ -65,6 +95,22 @@ const App = () => {
     setBeachSensors(sensors);
   };
 
+  const populateBusSensors = (busSensorData) => {
+    const sensors = busSensorData.map((busSensor, index) => {
+      return (
+        <Sensor
+          key={index}
+          data={busSensor}
+          selectSensor={(sensor) => {
+            setSelectedSensor(sensor);
+            setSelectedTab('sensor');
+          }}
+        />
+      );
+    });
+    setBusSensors(sensors);
+  };
+
   const selectNewTab = (tab) => {
     setSelectedTab(tab);
     setNewBeachSensorData({ ...newBeachSensorData, ...{ listeningForLocation: false } });
@@ -78,6 +124,7 @@ const App = () => {
         beachSensors={beachSensors}
         newBeachSensorData={newBeachSensorData}
         setNewBeachSensorData={setNewBeachSensorData}
+        busSensors={busSensors}
         setLocationMarker={setLocationMarker}
         locationMarker={locationMarker}
       />
@@ -88,8 +135,11 @@ const App = () => {
         setSelectedTab={selectNewTab}
         newBeachSensorData={newBeachSensorData}
         setNewBeachSensorData={setNewBeachSensorData}
-        setLocationMarker={setLocationMarker}
         createBeachSensor={createBeachSensor}
+        setLocationMarker={setLocationMarker}
+        newBusSensorData={newBusSensorData}
+        setNewBusSensorData={setNewBusSensorData}
+        createBusSensor={createBusSensor}
       />
       <Advanced className="app__advanced" />
     </div>

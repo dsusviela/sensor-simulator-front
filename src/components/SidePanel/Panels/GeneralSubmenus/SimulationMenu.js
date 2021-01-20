@@ -97,7 +97,7 @@ const SimulationMenu = () => {
           Comenzar buses
         </Button>
         <Button onClick={stopBusSimulation} color="danger">
-          Detener playas
+          Detener buses
         </Button>
         <Label className="sub-menu--label">{busSimulatorStatus}</Label>
       </div>

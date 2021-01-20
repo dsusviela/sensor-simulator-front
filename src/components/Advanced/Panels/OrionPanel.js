@@ -17,7 +17,6 @@ const OrionPanel = () => {
         headers: { 'fiware-service': 'openiot', 'fiware-servicepath': '/' }
       })
       .then((res) => {
-        console.log(res);
         setJsonDisplay(JSON.stringify(res.data, null, 4));
       })
       .catch(setJsonDisplay('Error conectandose a Orion'));

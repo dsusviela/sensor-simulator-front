@@ -6,7 +6,7 @@ const Sensor = ({ data, selectSensor }) => {
     uv: 'purple',
     bandera: 'green',
     agua: 'red',
-    personas: 'black',
+    personas: 'orange',
     bus: 'blue'
   };
   return (

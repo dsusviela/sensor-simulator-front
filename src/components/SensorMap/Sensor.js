@@ -2,11 +2,18 @@ import React from 'react';
 import { CircleMarker } from 'react-leaflet';
 
 const Sensor = ({ data, selectSensor }) => {
+  const typeColorMap = {
+    uv: 'purple',
+    bandera: 'green',
+    agua: 'red',
+    personas: 'black',
+    bus: 'blue'
+  };
   return (
     <CircleMarker
       onClick={() => selectSensor(data.id)}
       center={data.location.coordinates}
-      fillColor={'green'}
+      fillColor={typeColorMap[data.sensor_type]}
       color={'black'}
       radius={7}
       weight={0.6}

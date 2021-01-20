@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Label, Input, Button } from 'reactstrap';
 import './NewBeachSensorMenu.css';
 
 const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createBeachSensor }) => {
+  const [ maxOptions, setMaxOptions ] = useState(0);
+
+  const optionLabels = {
+    agua: [ 'No permitida', 'Permitida' ],
+    bandera: [ 'Roja', 'Amarilla', 'Verde' ],
+    uv: [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+  };
+
   const changeSensorType = (newValue) => {
+    setMaxOptions(0);
     setNewBeachSensorData({ ...newBeachSensorData, ...{ sensor_type: newValue } });
   };
 
@@ -16,6 +25,7 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
   };
 
   const changeMinNumber = (newValue) => {
+    setMaxOptions(newValue);
     setNewBeachSensorData({ ...newBeachSensorData, ...{ random_floor: newValue } });
   };
 
@@ -49,6 +59,81 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
     return `${parsedLatLng[0].toFixed(2)}, ${parsedLatLng[1].toFixed(2)}`;
   };
 
+  const inputForMin = () => {
+    if (newBeachSensorData['sensor_type'] === 'personas') {
+      return inputForRange(false);
+    } else {
+      return (
+        <Input
+          className="sub-menu--input-row--input__width-225"
+          type="select"
+          name="select"
+          onChange={(event) => changeMinNumber(event.target.value)}
+        >
+          {renderAllOptions()}
+        </Input>
+      );
+    }
+  };
+
+  const inputForMax = () => {
+    if (newBeachSensorData['sensor_type'] === 'personas') {
+      return inputForRange(true);
+    } else {
+      return (
+        <Input
+          className="sub-menu--input-row--input__width-225"
+          type="select"
+          name="select"
+          onChange={(event) => changeMaxNumber(event.target.value)}
+        >
+          {renderOptions()}
+        </Input>
+      );
+    }
+  };
+
+  const renderAllOptions = () => {
+    const labels = optionLabels[newBeachSensorData['sensor_type']];
+    return [ ...Array(labels.length).keys() ].map((index) => {
+      const displayValue = labels[index];
+      return (
+        <option value={`${index}`} key={index}>
+          {displayValue}
+        </option>
+      );
+    });
+  };
+
+  const renderOptions = () => {
+    const labels = optionLabels[newBeachSensorData['sensor_type']];
+    return [ ...Array(labels.length).keys() ]
+      .filter((item) => {
+        return maxOptions <= item;
+      })
+      .map((index) => {
+        const displayValue = labels[index];
+        return (
+          <option value={`${index}`} key={index}>
+            {displayValue}
+          </option>
+        );
+      });
+  };
+
+  const inputForRange = (isMax) => {
+    const id = isMax ? 'randomMax' : 'randomMin';
+    const onChangeFunc = isMax ? changeMaxNumber : changeMinNumber;
+    return (
+      <Input
+        id={`${id}`}
+        placeholder="Entero"
+        className="sub-menu--input__width-150"
+        onChange={(event) => onChangeFunc(event.target.value)}
+      />
+    );
+  };
+
   return (
     <div className="sub-menu">
       <div className="sub-menu--input-row">
@@ -78,22 +163,14 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
       <div className="sub-menu--input-row">
         <div className="sub-menu--input-row--input">
           <Label for="randomMin">Mínimo</Label>
-          <Input
-            id="randomMin"
-            placeholder="Entero"
-            className="sub-menu--input__width-75"
-            onChange={(event) => changeMinNumber(event.target.value)}
-          />
+          {inputForMin()}
         </div>
         <div className="sub-menu--input-row--input">
           <Label for="randomMax">Máximo</Label>
-          <Input
-            id="randomMax"
-            placeholder="Entero"
-            className="sub-menu--input__width-75"
-            onChange={(event) => changeMaxNumber(event.target.value)}
-          />
+          {inputForMax()}
         </div>
+      </div>
+      <div className="sub-menu--input-row">
         <div className="sub-menu--input-row--input">
           <Label for="periodo">Período</Label>
           <Input
@@ -103,10 +180,9 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
             onChange={(event) => changePeriod(event.target.value)}
           />
         </div>
-      </div>
-      <div className="sub-menu--input-row">
         <div className="sub-menu--input-row--input__checkbox">
           <Label check> Activo</Label>
+          <br />
           <Input type="checkbox" onChange={(event) => changeIsAlive(event.target.value)} />
         </div>
         <div className="sub-menu--input-row--input__checkbox">
@@ -118,7 +194,7 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
           <Input
             id="fixedValue"
             placeholder="Numero entero"
-            className="sub-menu--input__width-150"
+            className="sub-menu--input__width-75"
             onChange={(event) => changeFixedValue(event.target.value)}
           />
         </div>

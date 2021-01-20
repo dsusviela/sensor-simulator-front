@@ -27,6 +27,13 @@ label {
   width: 240px;
 }
 
+.sub-menu--input-row--input__width-225 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 225px;
+}
+
 .sub-menu--input-row--input__checkbox {
   display: flex;
   justify-content: space-evenly;
@@ -44,6 +51,10 @@ label {
 
 .sub-menu--input__width-130 {
   width: 130px;
+}
+
+.sub-menu--input__width-150 {
+  width: 150px;
 }
 
 .form-check-input {

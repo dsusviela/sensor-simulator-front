@@ -1,3 +1,42 @@
 .tab-content {
   height: 300px;
 }
+
+.tab-header {
+  background-color: #687a8f;
+  color: white;
+  font-weight: bold;
+}
+
+.tab-header .nav-link:hover {
+  transform: scale(1);
+  cursor: default;
+}
+
+.tab-header .nav-link.active {
+  background-color: #424f67;
+  color: white;
+  font-weight: bold;
+}
+
+.tab-content{
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.tab-content .nav-item{
+  padding: 1rem;
+  margin: 0.1rem auto;
+  border-radius: 0;
+  width: 90%;
+}
+
+.tab-pane {
+  height: 100%;
+  width: 100%;
+}
+
+.nav-tabs .nav-link {
+  border-radius: 0;
+}

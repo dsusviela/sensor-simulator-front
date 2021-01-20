@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import { anOldHope, arta, atomOneDark, CodeBlock, dracula, hybrid, monokai, tomorrow } from 'react-code-blocks';
+import { anOldHope, CodeBlock } from 'react-code-blocks';
 import './OrionPanel.css';
 
 const OrionPanel = () => {
@@ -43,9 +43,10 @@ const OrionPanel = () => {
 
   return (
     <div className="orion-panel">
-      <Nav tabs>
+      <Nav fill className="tab-header" tabs>
         <NavItem>
           <NavLink
+            className={activeTab === '1' ? 'active' : ''}
             onClick={() => {
               populateSubscriptions();
               toggle('1');
@@ -56,6 +57,7 @@ const OrionPanel = () => {
         </NavItem>
         <NavItem>
           <NavLink
+            className={activeTab === '2' ? 'active' : ''}
             onClick={() => {
               populateDevices();
               toggle('2');

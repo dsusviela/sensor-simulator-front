@@ -8,7 +8,7 @@ const OrionPanel = () => {
   const { REACT_APP_ORION_S } = process.env;
 
   const [ activeTab, setActiveTab ] = useState('1');
-  const [ jsonDisplay, setJsonDisplay ] = useState('Error conectandose a Orion');
+  const [ jsonDisplay, setJsonDisplay ] = useState('Conectando con Orion...');
 
   const populateSubscriptions = () => {
     setJsonDisplay('Fetching from Orion...');

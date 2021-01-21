@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Label } from 'reactstrap';
 import './SimulationMenu.css';
@@ -9,6 +9,23 @@ const SimulationMenu = () => {
   const [ beachSimulatorProcessId, setBeachSimulatorProcessId ] = useState(null);
   const [ busSimulatorStatus, setBusSimulatorStatus ] = useState('Detenido');
   const [ busSimulatorProcessId, setBusSimulatorProcessId ] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`${REACT_APP_SENSOR_BACKEND_API}/simulator_processes`)
+      .then((res) =>
+        res.data.forEach((element) => {
+          if (element.is_beach) {
+            setBeachSimulatorStatus('Simulando');
+            setBeachSimulatorProcessId(element.id);
+          } else {
+            setBusSimulatorStatus('Simulando');
+            setBusSimulatorProcessId(element.id);
+          }
+        })
+      )
+      .catch((err) => console.log(err));
+  }, []);
 
   const startSimulation = () => {
     setBeachSimulatorStatus('Simulando');

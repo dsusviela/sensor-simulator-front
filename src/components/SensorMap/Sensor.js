@@ -4,10 +4,10 @@ import { CircleMarker } from 'react-leaflet';
 const Sensor = ({ data, selectSensor }) => {
   const typeColorMap = {
     uv: 'purple',
-    bandera: 'green',
+    bandera: 'blue',
     agua: 'red',
-    personas: 'orange',
-    bus: 'blue'
+    personas: 'white',
+    bus: 'darkcyan'
   };
   return (
     <CircleMarker

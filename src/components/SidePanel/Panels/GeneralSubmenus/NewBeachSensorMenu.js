@@ -8,7 +8,7 @@ const NewBeachSensorMenu = ({ newBeachSensorData, setNewBeachSensorData, createB
   const optionLabels = {
     agua: [ 'No permitida', 'Permitida' ],
     bandera: [ 'Roja', 'Amarilla', 'Verde' ],
-    uv: [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+    uv: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
   };
 
   const changeSensorType = (newValue) => {

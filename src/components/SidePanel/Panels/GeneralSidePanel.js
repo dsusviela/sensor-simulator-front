@@ -76,7 +76,7 @@ const GeneralSidePanel = ({
   if (apiLoading) {
     return (
       <div className="activity-indicator">
-        <Spinner color="primary" />;
+        <Spinner color="primary" />
       </div>
     );
   } else {

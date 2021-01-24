@@ -36,6 +36,14 @@ const App = () => {
 
   const { REACT_APP_SENSOR_BACKEND_API, REACT_APP_FEATURE_PROVIDER } = process.env;
 
+  const typeColorMap = {
+    uv: 'purple',
+    bandera: 'blue',
+    agua: 'red',
+    personas: 'white',
+    bus: 'darkcyan'
+  };
+
   useEffect(() => {
     axios
       .get(`${REACT_APP_SENSOR_BACKEND_API}/beach_sensors`)
@@ -85,6 +93,7 @@ const App = () => {
         <Sensor
           key={index}
           data={beachSensor}
+          typeColorMap={typeColorMap}
           selectSensor={(sensor) => {
             setSelectedSensor(sensor);
             setSelectedTab('sensor');
@@ -102,6 +111,7 @@ const App = () => {
         <Sensor
           key={index}
           data={busSensor}
+          typeColorMap={typeColorMap}
           selectSensor={(sensor) => {
             setSelectedSensor(sensor);
             setSelectedTab('sensor');
@@ -128,6 +138,7 @@ const App = () => {
         busSensors={busSensors}
         setLocationMarker={setLocationMarker}
         locationMarker={locationMarker}
+        typeColorMap={typeColorMap}
       />
       <SidePanel
         className="app__side-panel"

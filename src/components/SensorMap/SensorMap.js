@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { CircleMarker, Map, TileLayer, LayersControl } from 'react-leaflet';
 import './SensorMap.css';
+import Legend from './Legend';
 import 'leaflet/dist/leaflet.css';
 
 const SensorMap = ({
@@ -11,7 +12,8 @@ const SensorMap = ({
   setNewBeachSensorData,
   busSensors,
   setLocationMarker,
-  locationMarker
+  locationMarker,
+  typeColorMap
 }) => {
   const mapRef = useRef();
 
@@ -38,6 +40,7 @@ const SensorMap = ({
           {busSensors}
           {locationMarker}
         </LayersControl>
+        <Legend layers={typeColorMap}/>
       </Map>
     </div>
   );

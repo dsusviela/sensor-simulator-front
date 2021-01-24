@@ -19,7 +19,7 @@ const OrionPanel = () => {
       .then((res) => {
         setJsonDisplay(JSON.stringify(res.data, null, 4));
       })
-      .catch(setJsonDisplay('Error conectandose a Orion'));
+      .catch(setJsonDisplay('Trayendo datos de Orion...'));
   };
 
   const populateDevices = () => {
@@ -31,7 +31,7 @@ const OrionPanel = () => {
       .then((res) => {
         setJsonDisplay(JSON.stringify(res.data, null, 4));
       })
-      .catch(setJsonDisplay('Error conectandose a Orion'));
+      .catch(setJsonDisplay('Trayendo datos de Orion...'));
   };
 
   const toggle = (tab) => {

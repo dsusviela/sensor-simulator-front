@@ -34,7 +34,7 @@ const NewBusSensorMenu = ({ newBusSensorData, setNewBusSensorData, createBusSens
 
   return (
     <div className="sub-menu--buses">
-      <div className="sub-menu--input-row--center">
+      <div className="sub-menu--input-row">
         <Input
           className="sub-menu--input-row--input__width-440"
           type="select"
@@ -46,18 +46,15 @@ const NewBusSensorMenu = ({ newBusSensorData, setNewBusSensorData, createBusSens
           <option value="405">405 PEÑAROL</option>
           <option value="192">192 MANGA</option>
         </Input>
-      </div>
-      <div className="sub-menu--input-row">
-        <Label for="periodo">Período</Label>
-        <Input id="periodo" placeholder="Entero" className="sub-menu--input__width-75" onChange={(event) => {}} />
         <Label check> Activo</Label>
-        <br />
         <Input
           type="checkbox"
           onChange={(event) => {
             changeIsAlive(event.target.value);
           }}
         />
+      </div>
+      <div className="sub-menu--input-row">
         <Button className="sub-menu--button" onClick={() => createBusSensor(newBusSensorData)}>
           Crear
         </Button>

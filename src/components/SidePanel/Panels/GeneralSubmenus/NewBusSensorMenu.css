@@ -17,5 +17,13 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 440px;
+  width: 300px;
+}
+
+.sub-menu--input-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  width: 100%;
 }

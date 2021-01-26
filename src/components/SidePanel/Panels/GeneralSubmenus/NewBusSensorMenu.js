@@ -20,8 +20,8 @@ const NewBusSensorMenu = ({ newBusSensorData, setNewBusSensorData, createBusSens
         ...{
           location_index: 0,
           line: 192,
-          subline: 1,
-          direction: 'A'
+          subline: 178,
+          direction: 'B'
         }
       });
     }

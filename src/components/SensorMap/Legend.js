@@ -1,29 +1,23 @@
-import { useLeaflet } from "react-leaflet";
-import L from "leaflet";
+import { useLeaflet } from 'react-leaflet';
+import L from 'leaflet';
 import './Legend.css';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 function Legend({ layers }) {
   const { map } = useLeaflet();
-  console.log(map);
 
   useEffect(() => {
-    const legend = L.control({ position: "bottomright" });
-
+    const legend = L.control({ position: 'bottomright' });
 
     legend.onAdd = () => {
-      const div = L.DomUtil.create("div", "info legend");
+      const div = L.DomUtil.create('div', 'info legend');
       let labels = [];
 
-      Object.entries(layers).forEach( ([name, color]) => {
-        labels.push(
-          '<i style="background:' +
-            color +
-            '"></i> Sensor ' + name
-        );
+      Object.entries(layers).forEach(([ name, color ]) => {
+        labels.push('<i style="background:' + color + '"></i> Sensor ' + name);
       });
 
-      div.innerHTML = labels.join("<br>");
+      div.innerHTML = labels.join('<br>');
       return div;
     };
 
@@ -31,6 +25,6 @@ function Legend({ layers }) {
     return () => legend.remove();
   });
   return null;
-};
+}
 
 export default Legend;

@@ -24,7 +24,6 @@ const GeneralSidePanel = ({
   };
 
   const preloadData = async (endpoint) => {
-    console.log('preloading data...');
     setApiLoading(true);
     axios
       .post(`${REACT_APP_SENSOR_BACKEND_API}/${endpoint}/preload_data`)

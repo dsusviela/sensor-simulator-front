@@ -95,7 +95,7 @@ const App = () => {
           data={beachSensor}
           typeColorMap={typeColorMap}
           selectSensor={(sensor) => {
-            setSelectedSensor(sensor);
+            setSelectedSensor([ sensor, 'beach' ]);
             setSelectedTab('sensor');
           }}
         />
@@ -113,7 +113,7 @@ const App = () => {
           data={busSensor}
           typeColorMap={typeColorMap}
           selectSensor={(sensor) => {
-            setSelectedSensor(sensor);
+            setSelectedSensor([ sensor, 'bus' ]);
             setSelectedTab('sensor');
           }}
         />

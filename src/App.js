@@ -38,7 +38,7 @@ const App = () => {
 
   const typeColorMap = {
     uv: 'purple',
-    bandera: 'blue',
+    bandera: 'yellow',
     agua: 'red',
     personas: 'white',
     bus: 'darkcyan'

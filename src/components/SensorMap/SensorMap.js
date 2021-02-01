@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { CircleMarker, Map, TileLayer, LayersControl } from 'react-leaflet';
+import { CircleMarker, Map, TileLayer } from 'react-leaflet';
 import './SensorMap.css';
 import Legend from './Legend';
 import 'leaflet/dist/leaflet.css';
@@ -31,15 +31,13 @@ const SensorMap = ({
   return (
     <div className={className}>
       <Map center={[ -34.91796, -56.166744 ]} zoom={15} scrollWheelZoom={false} ref={mapRef} onClick={updateLocation}>
-        <LayersControl position="topright">
-          <TileLayer
-            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {beachSensors}
-          {busSensors}
-          {locationMarker}
-        </LayersControl>
+        <TileLayer
+          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {beachSensors}
+        {busSensors}
+        {locationMarker}
         <Legend layers={typeColorMap}/>
       </Map>
     </div>

@@ -53,7 +53,7 @@ const OrionPanel = () => {
               toggle('1');
             }}
           >
-            Subscripciones en Orion
+            Suscripciones en Orion
           </NavLink>
         </NavItem>
         <NavItem>

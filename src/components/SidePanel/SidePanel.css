@@ -4,15 +4,15 @@
   font-weight: bold;
 }
 
-.tab-header .nav-link:hover {
-  transform: scale(1.03);
-  cursor: default;
-}
-
-.tab-header .nav-link.active {
+.tab-header .nav-item.active {
   background-color: #424f67;
   color: white;
   font-weight: bold;
+}
+
+.tab-header .nav-item:hover {
+  background-color: #607084;
+  cursor: default;
 }
 
 .tab-content{

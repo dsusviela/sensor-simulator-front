@@ -5,6 +5,8 @@ body {
 h1, h2, p {
   font-family: sans-serif;
   text-align: center;
+  font-size: xx-large;
+  font-weight: 300;
 }
 
 .leaflet-container {

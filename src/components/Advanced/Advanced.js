@@ -10,8 +10,8 @@ const Advanced = ({ className }) => {
 
   return (
     <div className={className}>
-      <div onClick={toggle} className="toggle">
-        Mostrar avanzado
+      <div onClick={toggle} className="toggle advanced-button">
+        {isOpen ?  "Ocultar" : "Mostrar avanzado"}
       </div>
       <Collapse isOpen={isOpen}>
         <OrionPanel />

@@ -6,3 +6,18 @@
   justify-content: center;
   align-items: center;
 }
+
+.advanced-button {
+  background-color: #2a2a2a;
+  color: white;
+  font-weight: bold;
+}
+
+.advanced-button:hover {
+  background-color: black;
+  color: white;
+  border-color: black;
+  border-style: solid;
+  border-width:  0.5px;
+  cursor: default !important;
+}

@@ -129,7 +129,7 @@ const GeneralSidePanel = ({
         >
           Precargar datos de omnibus
         </Button>
-        <Button
+        {/* <Button
           className="general-main-tab--button"
           onClick={() => {
             setLocationMarker([]);
@@ -139,7 +139,7 @@ const GeneralSidePanel = ({
           }}
         >
           Limpiar los sensores
-        </Button>
+        </Button> */}
         <hr />
         {renderSubMenu()}
       </div>

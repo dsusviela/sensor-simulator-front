@@ -168,7 +168,7 @@ const SensorPanel = ({ sensor }) => {
               <Input
                 id="id"
                 disabled={false}
-                placeholder={`${data.fixed_value}`}
+                placeholder={`${(data.fixed_value) ? data.fixed_value : ""}`}
                 className="sub-menu--input__width-130"
                 onChange={(event) => updateFixedValue(event.target.value)}
               />

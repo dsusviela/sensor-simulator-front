@@ -34,7 +34,7 @@ const App = () => {
   const [ locationMarker, setLocationMarker ] = useState([]);
   const [ beachFeatureData, setBeachFeatureData ] = useState([]);
 
-  const { REACT_APP_SENSOR_BACKEND_API, REACT_APP_FEATURE_PROVIDER } = process.env;
+  const { REACT_APP_SENSOR_BACKEND_API } = process.env;
 
   const typeColorMap = {
     uv: 'purple',
@@ -57,7 +57,6 @@ const App = () => {
         populateBusSensors(res.data);
       })
       .catch((error) => console.log(error));
-    // axios.get(`${REACT_APP_FEATURE_PROVIDER}/playas/items`).then()
   }, []);
 
   useInterval(() => {

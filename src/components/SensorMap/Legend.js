@@ -14,7 +14,7 @@ function Legend({ layers }) {
       let labels = [];
 
       Object.entries(layers).forEach(([ name, color ]) => {
-        labels.push('<i style="background:' + color + '"></i> Sensor ' + name);
+        labels.push('<i style="border-radius: 25px; background:' + color + '"></i> Sensor ' + name);
       });
 
       div.innerHTML = labels.join('<br>');
